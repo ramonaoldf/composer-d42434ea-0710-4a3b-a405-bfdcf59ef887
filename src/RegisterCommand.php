@@ -3,7 +3,6 @@
 namespace Laravel\SparkInstaller;
 
 use Exception;
-use InvalidArgumentException;
 use GuzzleHttp\Client as HttpClient;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -42,7 +41,7 @@ class RegisterCommand extends SymfonyCommand
         }
 
         if (! $this->configExists()) {
-            mkdir($_SERVER['HOME'].'/.spark');
+            mkdir($this->homePath().'/.spark');
         }
 
         $this->storeToken($input->getArgument('token'));

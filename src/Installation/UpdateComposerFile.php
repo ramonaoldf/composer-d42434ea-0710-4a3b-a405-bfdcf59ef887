@@ -2,7 +2,6 @@
 
 namespace Laravel\SparkInstaller\Installation;
 
-use Symfony\Component\Process\Process;
 use Laravel\SparkInstaller\NewCommand;
 
 class UpdateComposerFile
@@ -103,7 +102,7 @@ class UpdateComposerFile
     }
 
     /**
-     * Write the given Composer configuration back ot disk.
+     * Write the given Composer configuration back to disk.
      *
      * @param  array  $composer
      * @return void
