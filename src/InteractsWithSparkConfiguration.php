@@ -10,6 +10,7 @@ trait InteractsWithSparkConfiguration
      * Get the Spark API token from the configuration file.
      *
      * @return string
+     * @throws Exception
      */
     protected function readToken()
     {
@@ -52,6 +53,23 @@ trait InteractsWithSparkConfiguration
      */
     protected function configPath()
     {
-        return $_SERVER['HOME'].'/.spark/config.json';
+        return $this->homePath().'/.spark/config.json';
+    }
+
+    /**
+     * Get the User's home path.
+     *
+     * @return string
+     * @throws Exception
+     */
+    protected function homePath()
+    {
+        if (! empty($_SERVER['HOME'])) {
+            return $_SERVER['HOME'];
+        } elseif (! empty($_SERVER['HOMEDRIVE']) && ! empty($_SERVER['HOMEPATH'])) {
+            return $_SERVER['HOMEDRIVE'].$_SERVER['HOMEPATH'];
+        } else {
+            throw new Exception('Cannot determine home directory.');
+        }
     }
 }
